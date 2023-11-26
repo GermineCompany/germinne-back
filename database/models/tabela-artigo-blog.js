@@ -1,14 +1,15 @@
 const artigoSchema = (sequelize, DataTypes) => {
-  const artigoBlog = sequelize.define("artigoBlog", {
+  const artigoBlog = sequelize.define("PostBlog", {
     idArtigo: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true
     },
     idCategoria: DataTypes.INTEGER,
+    idFonte: DataTypes.INTEGER,
     titulo: DataTypes.STRING,
     descricao: DataTypes.STRING,
-    paragrafos: DataTypes.STRING,
+    conteudo: DataTypes.STRING,
     imagens: DataTypes.STRING
   }, { timestamps: false, freezeTableName: true, } );
 
