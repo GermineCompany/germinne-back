@@ -2,19 +2,23 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('categoriaBlog', {
-      idCategoria: {
+    await queryInterface.createTable('FontePost', {
+      idFonte: {
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      categoria: {
+      fonte: {
         type: Sequelize.STRING,
         allowNull: false
       },
+      data: {
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.fn('now')
+      }
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('categoriaBlog');
+    await queryInterface.dropTable('FontePost');
   }
 };

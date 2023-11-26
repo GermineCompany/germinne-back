@@ -2,8 +2,8 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('artigoBlog', {
-      idArtigo: {
+    await queryInterface.createTable('PostBlog', {
+      idPost: {
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
@@ -12,20 +12,28 @@ module.exports = {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {
-          model: 'categoriaBlog',
+          model: 'CategoriaPost',
           key: 'idCategoria'
+        }
+      },
+      idFonte: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'FontePost',
+          key: 'idFonte'
         }
       },
       titulo: {
         type: Sequelize.STRING,
         allowNull: false
       },
-      descricao: {
-        type: Sequelize.STRING,
+      conteudo: {
+        type: Sequelize.TEXT('long'),
         allowNull: false
       },
-      paragrafos: {
-        type: Sequelize.TEXT('long'),
+      descricao: {
+        type: Sequelize.STRING,
         allowNull: false
       },
       imagens: {
@@ -35,6 +43,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('artigoBlog');
+    await queryInterface.dropTable('PostBlog');
   }
 };

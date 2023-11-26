@@ -2,15 +2,12 @@
 
 module.exports = {
   async up (queryInterface, Sequelize) {
-    await queryInterface.bulkInsert('categoriaBlog', [
+    await queryInterface.bulkInsert('CategoriaPost', [
       {
         categoria: 'Cultivo',
       },
       {
-        categoria: 'Plantas',
-      },
-      {
-        categoria: 'Vasos',
+        categoria: 'Agricultura urbana',
       },
       {
         categoria: 'Curiosidades',
@@ -19,6 +16,6 @@ module.exports = {
   },
 
   async down (queryInterface, Sequelize) {
-    await queryInterface.bulkDelete('categoriaBlog', null, {});
+    await queryInterface.bulkDelete('CategoriaPost', null, {});
   }
 };
