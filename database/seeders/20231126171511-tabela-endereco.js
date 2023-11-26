@@ -11,6 +11,14 @@ module.exports = {
         cep: '04851250',
         numero: '14 - C'
       },
+      {
+        rua: 'Avenida Dona Belmira Marin',
+        bairro: 'Jardim Eliana',
+        cidade: 'São Paulo',
+        pais: 'Brasil',
+        cep: '04846000',
+        numero: '5001 - Lanchonete'
+      },
     ], {});
   },
 
