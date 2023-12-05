@@ -9,7 +9,7 @@ const categoriaSchema = (sequelize, DataTypes) => {
   }, { timestamps: false, freezeTableName: true, } );
 
   categoriaBlog.associate = (models) => {
-    categoriaBlog.hasOne(models.artigoBlog, { foreignKey: "idCategoria", as: "artigo" });
+    categoriaBlog.hasOne(models.PostBlog, { foreignKey: "idCategoria", as: "categoria" });
   }
 
   return categoriaBlog;

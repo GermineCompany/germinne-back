@@ -14,7 +14,9 @@ const artigoSchema = (sequelize, DataTypes) => {
   }, { timestamps: false, freezeTableName: true, } );
 
   artigoBlog.associate = (models) => {
-    artigoBlog.belongsTo(models.categoriaBlog, { foreignKey: "idArtigo", as: "categoria" });
+    artigoBlog.belongsTo(models.FontePost, { foreignKey: "idFonte", as: "artigo" });
+
+    artigoBlog.belongsTo(models.CategoriaPost, { foreignKey: "idCategoria", as: "artigo" });
   }
 
   return artigoBlog;
