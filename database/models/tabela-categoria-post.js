@@ -1,5 +1,5 @@
 const categoriaSchema = (sequelize, DataTypes) => {
-  const categoriaBlog = sequelize.define("categoriaBlog", {
+  const categoriaBlog = sequelize.define("CategoriaPost", {
     idCategoria: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -9,7 +9,7 @@ const categoriaSchema = (sequelize, DataTypes) => {
   }, { timestamps: false, freezeTableName: true, } );
 
   categoriaBlog.associate = (models) => {
-    categoriaBlog.hasOne(models.PostBlog, { foreignKey: "idCategoria", as: "categoria" });
+    categoriaBlog.hasOne(models.PostBlog, { foreignKey: "idCategoria", as: "categoria1" });
   }
 
   return categoriaBlog;

@@ -10,7 +10,7 @@ const fontPostSchema = (sequelize, DataTypes) => {
   }, { timestamps: false, freezeTableName: true, } );
 
   fontPostTable.associate = (models) => {
-    fontPostTable.hasOne(models.PostBlog, { foreignKey: "idFonte", as: "fonte" });
+    fontPostTable.hasOne(models.PostBlog, { foreignKey: "idFonte", as: "fonte1" });
   }
 
   return fontPostTable;
