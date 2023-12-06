@@ -1,6 +1,6 @@
 const artigoSchema = (sequelize, DataTypes) => {
   const artigoBlog = sequelize.define("PostBlog", {
-    idArtigo: {
+    idPost: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true
@@ -14,7 +14,9 @@ const artigoSchema = (sequelize, DataTypes) => {
   }, { timestamps: false, freezeTableName: true, } );
 
   artigoBlog.associate = (models) => {
-    artigoBlog.belongsTo(models.categoriaBlog, { foreignKey: "idArtigo", as: "categoria" });
+    artigoBlog.belongsTo(models.FontePost, { foreignKey: "idFonte", as: "postFonte" });
+
+    artigoBlog.belongsTo(models.CategoriaPost, { foreignKey: "idCategoria", as: "postCategoria" });
   }
 
   return artigoBlog;
