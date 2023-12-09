@@ -1,5 +1,7 @@
 const { Profissional, Endereco, ServicosOferecidos, TrabalhosPortfolio } = require("../../database/models");
 
+const bcrypt = require('../utils/bcrypt');
+
 const { StatusCodes } = require("http-status-codes");
 
 const getProfissionais = async () => {
@@ -23,20 +25,21 @@ const getProfissionais = async () => {
 };
 
 const registerProfissional = async (body) => {
-    const profissional = Profissional.findAll({
-        attributes: { exclude: 'idEndereco' },
-        include: [
-            {
-                model: Endereco, as: 'endereco'
-            },
-            {
-                model: ServicosOferecidos, as: 'profissionalServicos',
-                attributes: { exclude: ['profissionalServico'] },
-            }
-        ]
+    const checkEmail = await Profissional.findOne({ where: { email: body.email } });
+
+    if (checkEmail) {
+        throw Object({ status: StatusCodes.CONFLICT, message: "O email já está cadastrado!" });
+    }
+
+    const encodePassword = bcrypt.encodePassword(body.senha);
+
+    body.senha = encodePassword;
+
+    const createProfissional = await Profissional.create({
+        ...body
     });
 
-    return profissional;
+    return createProfissional;
 };
 
 module.exports = {

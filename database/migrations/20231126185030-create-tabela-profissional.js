@@ -29,35 +29,27 @@ module.exports = {
         allowNull: false
       },
       dataDeNascimento: {
-        type: Sequelize.DATE,
-        allowNull: false
+        type: Sequelize.DATE
       },
       rg: {
-        type: Sequelize.STRING,
-        allowNull: false
+        type: Sequelize.STRING
       },
       biografia: {
-        type: Sequelize.STRING,
-        allowNull: false
+        type: Sequelize.STRING
       },
       telefone: {
-        type: Sequelize.STRING,
-        allowNull: false
+        type: Sequelize.STRING
       },
       celular: {
-        type: Sequelize.STRING,
-        allowNull: false
+        type: Sequelize.STRING
       },
       imagemPerfil: {
-        type: Sequelize.STRING,
-        allowNull: false
+        type: Sequelize.STRING
       },
       imagemPortfolio: {
-        type: Sequelize.TEXT('long'),
-        allowNull: false
+        type: Sequelize.TEXT('long')
       },
       idEndereco: {
-        allowNull: false,
         type: Sequelize.INTEGER,
         references: {
           model: 'Endereco',
