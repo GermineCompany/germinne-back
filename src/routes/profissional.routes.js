@@ -14,4 +14,6 @@ routes.get("/:id", controller.getProfissionalById);
 
 routes.put("/:id", controller.updateProfissional);
 
+routes.put("/:id/endereco", controller.updateProfissionalEndereco);
+
 module.exports = routes;

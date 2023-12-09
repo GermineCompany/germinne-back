@@ -42,10 +42,10 @@ const registerCliente = async (body) => {
     idEndereco: insertEndereco.dataValues.idEndereco
   });
 
-  return { 
+  return {
     message: 'Usuario cadastrado com sucesso!',
     idCliente: insertCliente.dataValues.idUsuario
-    };
+  };
 };
 
 const getClienteById = async (id) => {
@@ -58,14 +58,31 @@ const getClienteById = async (id) => {
         model: Produto, as: 'usuarioPedidos',
         attributes: { exclude: ['estoque'] },
       }
-  ]
+    ]
   });
 
   return infos;
 };
 
+const updateCliente = async (body, id) => {
+  const result = await Usuario.update({ ...body }, { where: { idUsuario: id } });
+
+  if (body.senha) {
+    body.senha = bcrypt.encodePassword(body.senha);
+  }
+
+  if (result[0] === 0) {
+    throw Object({ status: StatusCodes.INTERNAL_SERVER_ERROR, message: "Ocorreu um erro ao atualizar as informações..." });
+  } else {
+    return {
+      message: "Cadastro atualizado com sucesso!"
+    }
+  }
+};
+
 module.exports = {
   loginCliente,
   registerCliente,
-  getClienteById
+  getClienteById,
+  updateCliente
 };

@@ -32,10 +32,17 @@ const loginProfissional = async (req, res) => {
     res.status(StatusCodes.OK).json(result);
 };
 
+const updateProfissionalEndereco = async (req, res) => {
+    const result = await service.updateProfissionalEndereco(req.body, req.params.id);
+
+    res.status(StatusCodes.OK).json(result);
+};
+
 module.exports = {
     registerProfissional,
     getProfissional,
     getProfissionalById,
     updateProfissional,
-    loginProfissional
+    loginProfissional,
+    updateProfissionalEndereco
 }

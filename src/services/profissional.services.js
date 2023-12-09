@@ -79,9 +79,11 @@ const getProfissionalById = async (id) => {
     return profissional;
 };
 
-const updateProfissional = async (body, id) => {
-    if (body.rua) {
-        const insertEndereco = await Endereco.create({
+const updateProfissionalEndereco = async (body, id) => {
+    const profissional = await Profissional.findByPk(id);
+
+    if (!profissional.dataValues.idEndereco) {
+        await Endereco.create({
             rua: body.rua,
             bairro: body.bairro,
             cidade: body.cidade,
@@ -90,9 +92,24 @@ const updateProfissional = async (body, id) => {
             numero: body.numero
         });
 
-        body.idEndereco = insertEndereco.dataValues.idEndereco;
+        return { message: "Cadastro atualizado com sucesso!" };
     }
 
+    if (profissional.dataValues.idEndereco) {
+        await Endereco.update({
+            rua: body.rua,
+            bairro: body.bairro,
+            cidade: body.cidade,
+            pais: body.pais,
+            cep: body.cep,
+            numero: body.numero
+        }, { where: { idEndereco: profissional.dataValues.idEndereco } });
+
+        return { message: "Cadastro atualizado com sucesso!" };
+    }
+};
+
+const updateProfissional = async (body, id) => {
     if (body.senha) {
         body.senha = bcrypt.encodePassword(body.senha);
     }
@@ -113,5 +130,6 @@ module.exports = {
     getProfissionais,
     getProfissionalById,
     updateProfissional,
-    loginProfissional
+    loginProfissional,
+    updateProfissionalEndereco
 }
