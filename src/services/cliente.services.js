@@ -16,7 +16,8 @@ const loginCliente = async (body) => {
   }
 
   return {
-    message: "Login realizado com sucesso!"
+    message: "Login realizado com sucesso!",
+    idCliente: cliente.idUsuario
   };
 };
 

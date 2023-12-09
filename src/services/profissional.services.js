@@ -16,7 +16,8 @@ const loginProfissional = async (body) => {
     }
 
     return {
-        message: "Login realizado com sucesso!"
+        message: "Login realizado com sucesso!",
+        idProfissional: profissional.idProfissional
     };
 };
 
