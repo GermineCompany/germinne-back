@@ -80,9 +80,40 @@ const updateCliente = async (body, id) => {
   }
 };
 
+const updateClienteEndereco = async (body, id) => {
+  const cliente = await Usuario.findByPk(id);
+
+  if (!cliente.dataValues.idEndereco) {
+    await Endereco.create({
+      rua: body.rua,
+      bairro: body.bairro,
+      cidade: body.cidade,
+      pais: body.pais,
+      cep: body.cep,
+      numero: body.numero
+    });
+
+    return { message: "Endereço atualizado com sucesso!" };
+  }
+
+  if (cliente.dataValues.idEndereco) {
+    await Endereco.update({
+      rua: body.rua,
+      bairro: body.bairro,
+      cidade: body.cidade,
+      pais: body.pais,
+      cep: body.cep,
+      numero: body.numero
+    }, { where: { idEndereco: cliente.dataValues.idEndereco } });
+
+    return { message: "Endereço atualizado com sucesso!" };
+  }
+};
+
 module.exports = {
   loginCliente,
   registerCliente,
   getClienteById,
-  updateCliente
+  updateCliente,
+  updateClienteEndereco
 };
