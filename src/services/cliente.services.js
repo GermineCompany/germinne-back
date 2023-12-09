@@ -20,12 +20,12 @@ const loginCliente = async (body) => {
 
 const registerCliente = async (body) => {
   const insertEndereco = await Endereco.create({
-    rua: 'Rua Tito',
-    bairro: 'Vila Romana',
-    cidade: 'São Paulo',
-    pais: 'Brasil',
-    cep: '05851000',
-    numero: '54 - Senac Lapa Tito'
+    rua: body.rua,
+    bairro: body.bairro,
+    cidade: body.cidade,
+    pais: body.pais,
+    cep: body.cep,
+    numero: body.numero
   });
 
   const hashSenha = bcrypt.encodePassword(body.senha);

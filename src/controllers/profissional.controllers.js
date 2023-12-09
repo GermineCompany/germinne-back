@@ -20,8 +20,18 @@ const getProfissionalById = async (req, res) => {
     res.status(StatusCodes.OK).json(profissional);
 };
 
+const updateProfissional = async (req, res) => {
+    const result = await service.updateProfissional(req.body, req.params.id);
+
+    res.status(StatusCodes.OK).json(result);
+};
+
+
+
+
 module.exports = {
     registerProfissional,
     getProfissional,
-    getProfissionalById
+    getProfissionalById,
+    updateProfissional
 }

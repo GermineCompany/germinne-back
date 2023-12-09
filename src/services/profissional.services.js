@@ -62,8 +62,38 @@ const getProfissionalById = async (id) => {
     return profissional;
 };
 
+const updateProfissional = async (body, id) => {
+    if (body.rua) {
+        const insertEndereco = await Endereco.create({
+            rua: body.rua,
+            bairro: body.bairro,
+            cidade: body.cidade,
+            pais: body.pais,
+            cep: body.cep,
+            numero: body.numero
+        });
+
+        body.idEndereco = insertEndereco.dataValues.idEndereco;
+    }
+
+    if (body.senha) {
+        body.senha = bcrypt.encodePassword(body.senha);
+    }
+
+    const result = await Profissional.update({ ...body }, { where: { idProfissional: id }});
+
+    if (result[0] === 0) {
+        throw Object({ status: StatusCodes.INTERNAL_SERVER_ERROR, message: "Ocorreu um erro ao atualizar as informações..." });
+    } else {
+        return {
+            message: "Cadastro atualizado com sucesso!"
+        }
+    }
+};
+
 module.exports = {
     registerProfissional,
     getProfissionais,
-    getProfissionalById
+    getProfissionalById,
+    updateProfissional
 }

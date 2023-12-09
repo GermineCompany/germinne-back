@@ -10,4 +10,6 @@ routes.get("/", controller.getProfissional);
 
 routes.get("/:id", controller.getProfissionalById);
 
+routes.put("/:id", controller.updateProfissional);
+
 module.exports = routes;
