@@ -8,4 +8,6 @@ routes.use("/cliente", require("./cliente.routes"));
 
 routes.use("/profissional", require("./profissional.routes"));
 
+routes.use("/produto", require("./produto.routes"));
+
 module.exports = routes;
