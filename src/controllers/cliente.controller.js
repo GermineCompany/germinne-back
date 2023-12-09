@@ -11,7 +11,7 @@ const loginCliente = async (req, res) => {
 const registerCliente = async (req, res) => {
   const result = await service.registerCliente(req.body);
 
-  res.status(StatusCodes.OK).json(result);
+  res.status(StatusCodes.CREATED).json(result);
 };
 
 module.exports = {
