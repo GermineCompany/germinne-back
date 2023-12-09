@@ -14,8 +14,8 @@ const statusPedidoSchema = (sequelize, DataTypes) => {
 
     statusPedidoTable.associate = (models) => {
         statusPedidoTable.hasOne(models.Pedido, {
-            foreignKey: "idEndereco",
-            as: "pedidoo",
+            foreignKey: "idStatus",
+            as: "statusPedido",
         });
     };
 

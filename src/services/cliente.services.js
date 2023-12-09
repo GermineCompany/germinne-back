@@ -1,4 +1,4 @@
-const { Usuario, Endereco } = require("../../database/models");
+const { Usuario, Endereco, Produto, StatusPedido, Pedido } = require("../../database/models");
 
 const { StatusCodes } = require("http-status-codes");
 
@@ -48,7 +48,24 @@ const registerCliente = async (body) => {
     };
 };
 
+const getClienteById = async (id) => {
+  const infos = await Usuario.findByPk(id, {
+    include: [
+      {
+        model: Endereco, as: 'endereco'
+      },
+      {
+        model: Produto, as: 'usuarioPedidos',
+        attributes: { exclude: ['estoque'] },
+      }
+  ]
+  });
+
+  return infos;
+};
+
 module.exports = {
   loginCliente,
-  registerCliente
+  registerCliente,
+  getClienteById
 };
