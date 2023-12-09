@@ -14,7 +14,14 @@ const getProfissional = async (req, res) => {
     res.status(StatusCodes.OK).json(profissionais);
 };
 
+const getProfissionalById = async (req, res) => {
+    const profissional = await service.getProfissionalById(req.params.id);
+
+    res.status(StatusCodes.OK).json(profissional);
+};
+
 module.exports = {
     registerProfissional,
-    getProfissional
+    getProfissional,
+    getProfissionalById
 }

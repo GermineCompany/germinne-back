@@ -42,7 +42,28 @@ const registerProfissional = async (body) => {
     return createProfissional;
 };
 
+const getProfissionalById = async (id) => {
+    const profissional = Profissional.findByPk(id, {
+        attributes: { exclude: 'idEndereco' },
+        include: [
+            {
+                model: Endereco, as: 'endereco'
+            },
+            {
+                model: ServicosOferecidos, as: 'profissionalServicos',
+                attributes: { exclude: ['profissionalServico'] },
+            },
+            {
+                model: TrabalhosPortfolio, as: 'profissionalTrabalhos'
+            }
+        ]
+    });
+
+    return profissional;
+};
+
 module.exports = {
     registerProfissional,
-    getProfissionais
+    getProfissionais,
+    getProfissionalById
 }

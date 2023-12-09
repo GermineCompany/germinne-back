@@ -8,4 +8,6 @@ routes.post("/registro", controller.registerProfissional);
 
 routes.get("/", controller.getProfissional);
 
+routes.get("/:id", controller.getProfissionalById);
+
 module.exports = routes;
