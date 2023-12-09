@@ -7,7 +7,7 @@ module.exports = {
         nome: 'Vitor',
         sobrenome: 'Moutim',
         email: 'moutimg@gmail.com',
-        senha: 'germinne',
+        senha: '$2b$05$TcaSo73M2PmZenHpAgSIi.XptJ.Jn0hyy.wRtOBKZoQxuvHVqhMM.',
         cpf: '51225511895',
         dataDeNascimento: '2001-05-22',
         rg: '53182455x',

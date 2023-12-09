@@ -12,10 +12,12 @@ const loginCliente = async (body) => {
   }
 
   if (!bcrypt.comparePassword(body.senha, cliente.senha)) {
-    throw Object({ status: StatusCodes.NOT_FOUND, message: "A senha está incorreta!" });
+    throw Object({ status: StatusCodes.UNAUTHORIZED, message: "A senha está incorreta!" });
   }
 
-  return cliente;
+  return {
+    message: "Login realizado com sucesso!"
+  };
 };
 
 const registerCliente = async (body) => {

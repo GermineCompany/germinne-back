@@ -26,12 +26,16 @@ const updateProfissional = async (req, res) => {
     res.status(StatusCodes.OK).json(result);
 };
 
+const loginProfissional = async (req, res) => {
+    const result = await service.loginProfissional(req.body);
 
-
+    res.status(StatusCodes.OK).json(result);
+};
 
 module.exports = {
     registerProfissional,
     getProfissional,
     getProfissionalById,
-    updateProfissional
+    updateProfissional,
+    loginProfissional
 }
