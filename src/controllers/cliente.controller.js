@@ -14,7 +14,14 @@ const registerCliente = async (req, res) => {
   res.status(StatusCodes.CREATED).json(result);
 };
 
+const getClienteById = async (req, res) => {
+  const infos = await service.getClienteById(req.params.id);
+
+  res.status(StatusCodes.CREATED).json(infos);
+};
+
 module.exports = {
   loginCliente,
-  registerCliente
+  registerCliente,
+  getClienteById
 };
