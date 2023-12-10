@@ -22,5 +22,9 @@ app.use(require('./routes/index'));
 
 app.use(middlewares.errorHandler);
 
+app.get("/", (req, res) => {
+  res.send("Express on Vercel");
+});
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Running on port ${PORT}`));
