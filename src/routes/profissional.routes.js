@@ -6,6 +6,8 @@ const controller = require("../controllers/profissional.controllers");
 
 routes.post("/registro", controller.registerProfissional);
 
+routes.post("/login", controller.loginProfissional);
+
 routes.get("/", controller.getProfissional);
 
 routes.get("/:id", controller.getProfissionalById);
