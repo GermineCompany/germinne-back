@@ -1,4 +1,8 @@
 const { Usuario, Endereco, Produto, StatusPedido, Pedido } = require("../../database/models");
+const config = require('../../database/config/config');
+const { Op } = require('sequelize');
+const Sequelize = require('sequelize');
+const sequelize = new Sequelize(config.development);
 
 const { StatusCodes } = require("http-status-codes");
 
@@ -49,17 +53,32 @@ const registerCliente = async (body) => {
 };
 
 const getClienteById = async (id) => {
-  const infos = await Usuario.findByPk(id, {
-    include: [
+  const pedidos = await sequelize.query(
+    `SELECT 
+        a.idPedido,
+        a.idProduto,
+        a.idStatus,
+        c.status AS statusPedido,
+        a.quantidade,
+        b.nome AS nomeProduto,
+        b.descricao AS descricaoProduto,
+        b.preco AS precoProduto
+      FROM
+        Pedido AS a
+        INNER JOIN Produto AS b ON a.idProduto = b.idProduto
+        INNER JOIN StatusPedido AS c ON a.idStatus = c.idStatus
+      WHERE a.idUsuario = ?;`,
       {
-        model: Endereco, as: 'endereco'
+        replacements: [id],
+        type: Sequelize.QueryTypes.SELECT,
       },
-      {
-        model: Produto, as: 'usuarioPedidos',
-        attributes: { exclude: ['estoque'] },
-      }
-    ]
+  )
+
+  const infos = await Usuario.findByPk(id, {
+    include: { model: Endereco, as: 'endereco' }
   });
+
+  infos.dataValues.clientePedidos = pedidos;
 
   return infos;
 };
