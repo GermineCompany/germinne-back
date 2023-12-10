@@ -14,6 +14,6 @@ routes.put("/:id", controller.updateCliente);
 
 routes.put("/:id/endereco", controller.updateClienteEndereco);
 
-routes.get("/". controller.teste);
+routes.get("/", controller.teste);
 
 module.exports = routes;

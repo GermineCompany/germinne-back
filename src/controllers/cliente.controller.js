@@ -41,5 +41,6 @@ module.exports = {
   registerCliente,
   getClienteById,
   updateCliente,
-  updateClienteEndereco
+  updateClienteEndereco,
+  teste
 };
