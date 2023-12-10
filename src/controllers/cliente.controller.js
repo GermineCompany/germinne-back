@@ -32,6 +32,10 @@ const updateClienteEndereco = async (req, res) => {
   res.status(StatusCodes.OK).json(result);
 };
 
+const teste = async (req, res) => {
+  res.status(StatusCodes.OK).json({ message: 'TA PEGANDO!!!' });
+};
+
 module.exports = {
   loginCliente,
   registerCliente,
