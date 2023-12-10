@@ -92,7 +92,7 @@ const updateProfissionalEndereco = async (body, id) => {
             numero: body.numero
         });
 
-        return { message: "Cadastro atualizado com sucesso!" };
+        return { message: "Endereço atualizado com sucesso!" };
     }
 
     if (profissional.dataValues.idEndereco) {
@@ -105,7 +105,7 @@ const updateProfissionalEndereco = async (body, id) => {
             numero: body.numero
         }, { where: { idEndereco: profissional.dataValues.idEndereco } });
 
-        return { message: "Cadastro atualizado com sucesso!" };
+        return { message: "Endereço atualizado com sucesso!" };
     }
 };
 

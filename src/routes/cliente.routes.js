@@ -12,4 +12,6 @@ routes.post("/registro", controller.registerCliente);
 
 routes.put("/:id", controller.updateCliente);
 
+routes.put("/:id/endereco", controller.updateClienteEndereco);
+
 module.exports = routes;
