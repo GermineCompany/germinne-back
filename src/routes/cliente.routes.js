@@ -10,4 +10,6 @@ routes.post("/login", controller.loginCliente);
 
 routes.post("/registro", controller.registerCliente);
 
+routes.put("/:id", controller.updateCliente);
+
 module.exports = routes;

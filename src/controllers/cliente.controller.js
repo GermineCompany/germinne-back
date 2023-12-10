@@ -20,8 +20,15 @@ const getClienteById = async (req, res) => {
   res.status(StatusCodes.CREATED).json(infos);
 };
 
+const updateCliente = async (req, res) => {
+  const result = await service.updateCliente(req.body, req.params.id);
+
+  res.status(StatusCodes.OK).json(result);
+}
+
 module.exports = {
   loginCliente,
   registerCliente,
-  getClienteById
+  getClienteById,
+  updateCliente
 };
