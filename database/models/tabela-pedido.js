@@ -1,5 +1,10 @@
 const pedidoSchema = (sequelize, DataTypes) => {
     const pedidoTable = sequelize.define("Pedido", {
+        idPedido: {
+            type: DataTypes.INTEGER,
+            primaryKey: true,
+            autoIncrement: true
+        },
         idProduto: {
             type: DataTypes.INTEGER,
             primaryKey: true

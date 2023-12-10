@@ -10,4 +10,6 @@ routes.use("/profissional", require("./profissional.routes"));
 
 routes.use("/produto", require("./produto.routes"));
 
+routes.use("/pedido", require("./pedido.routes"));
+
 module.exports = routes;
