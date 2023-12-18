@@ -8,7 +8,8 @@ const produtoSchema = (sequelize, DataTypes) => {
         nome: DataTypes.STRING,
         descricao: DataTypes.STRING,
         preco: DataTypes.FLOAT,
-        estoque: DataTypes.INTEGER
+        estoque: DataTypes.INTEGER,
+        imagem: DataTypes.STRING
     }, { timestamps: false, freezeTableName: true, });
 
     return produtoTable;

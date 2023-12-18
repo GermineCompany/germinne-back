@@ -24,6 +24,10 @@ module.exports = {
       estoque: {
         allowNull: false,
         type: Sequelize.INTEGER
+      },
+      imagem: {
+        allowNull: false,
+        type: Sequelize.STRING
       }
     });
   },

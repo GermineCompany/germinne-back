@@ -17,7 +17,9 @@ const loginProfissional = async (body) => {
 
     return {
         message: "Login realizado com sucesso!",
-        idProfissional: profissional.idProfissional
+        id: profissional.idProfissional,
+        nome: profissional.nome,
+        sobrenome: profissional.sobrenome
     };
 };
 
@@ -56,7 +58,12 @@ const registerProfissional = async (body) => {
         ...body
     });
 
-    return createProfissional;
+    return {
+        message: 'Profissional cadastrado com sucesso!',
+        id: createProfissional.dataValues.idProfissional,
+        nome: createProfissional.dataValues.nome,
+        sobrenome: createProfissional.dataValues.sobrenome
+    };
 };
 
 const getProfissionalById = async (id) => {
