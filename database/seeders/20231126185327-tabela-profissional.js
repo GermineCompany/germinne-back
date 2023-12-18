@@ -47,7 +47,7 @@ module.exports = {
           cpf: "51318092078",
           dataDeNascimento: "1960-8-1",
           rg: "174775118",
-          biografia: "",
+          biografia: "Me chamo José da Silva, tenho 55 anos e sou um horticultor com uma trajetória marcante no universo agrícola. A paixão pela terra e pelas plantas corre em minhas veias desde cedo, proveniente de uma família com profundas raízes na agricultura.",
           telefone: "011991598280",
           celular: "01159315924",
           imagemPerfil:
@@ -97,7 +97,7 @@ module.exports = {
           cpf: "51318092078",
           dataDeNascimento: "1960-8-1",
           rg: "174775118",
-          biografia: "",
+          biografia: "Soraia, nascida em uma pequena comunidade rural há 55 anos, é uma renomada horticultora cujo nome se tornou sinônimo de expertise na área. Desde cedo, Soraia foi imersa no universo agrícola, vindo de uma família de agricultores cujas raízes se entrelaçam com a terra.",
           telefone: "011991598280",
           celular: "01159315924",
           imagemPerfil:

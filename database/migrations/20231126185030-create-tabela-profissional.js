@@ -35,7 +35,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       biografia: {
-        type: Sequelize.STRING
+        type: Sequelize.TEXT('long')
       },
       telefone: {
         type: Sequelize.STRING
