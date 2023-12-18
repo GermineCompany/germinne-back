@@ -20,6 +20,9 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
+      telefone: {
+        type: Sequelize.STRING
+      },
       senha: {
         type: Sequelize.STRING,
         allowNull: false
@@ -29,11 +32,9 @@ module.exports = {
         allowNull: false
       },
       dataDeNascimento: {
-        type: Sequelize.DATE,
-        allowNull: false
+        type: Sequelize.DATE
       },
       idEndereco: {
-        allowNull: false,
         type: Sequelize.INTEGER,
         references: {
           model: 'Endereco',

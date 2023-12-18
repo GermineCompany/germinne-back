@@ -10,6 +10,7 @@ const usuarioSchema = (sequelize, DataTypes) => {
       nome: DataTypes.STRING,
       sobrenome: DataTypes.STRING,
       email: DataTypes.STRING,
+      telefone: DataTypes.STRING,
       senha: DataTypes.STRING,
       cpf: DataTypes.STRING,
       dataDeNascimento: DataTypes.DATE,

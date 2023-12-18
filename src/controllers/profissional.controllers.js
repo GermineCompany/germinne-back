@@ -29,6 +29,8 @@ const updateProfissional = async (req, res) => {
 const loginProfissional = async (req, res) => {
     const result = await service.loginProfissional(req.body);
 
+    console.log(req.body);
+
     res.status(StatusCodes.OK).json(result);
 };
 

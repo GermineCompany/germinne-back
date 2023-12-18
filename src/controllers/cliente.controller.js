@@ -17,7 +17,7 @@ const registerCliente = async (req, res) => {
 const getClienteById = async (req, res) => {
   const infos = await service.getClienteById(req.params.id);
 
-  res.status(StatusCodes.CREATED).json(infos);
+  res.status(StatusCodes.OK).json(infos);
 };
 
 const updateCliente = async (req, res) => {

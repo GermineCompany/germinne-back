@@ -21,48 +21,49 @@ const loginCliente = async (body) => {
 
   return {
     message: "Login realizado com sucesso!",
-    idCliente: cliente.idUsuario
+    id: cliente.idUsuario,
+    nome: cliente.nome,
+    sobrenome: cliente.sobrenome
   };
 };
 
 const registerCliente = async (body) => {
-  const insertEndereco = await Endereco.create({
-    rua: body.rua,
-    bairro: body.bairro,
-    cidade: body.cidade,
-    pais: body.pais,
-    cep: body.cep,
-    numero: body.numero
-  });
+  const verifyEmail = await Usuario.findOne({ where: { email: body.email }});
+  if (verifyEmail) {
+    throw Object({ status: StatusCodes.CONFLICT, message: "Esse email já está cadastrado!" });
+  }
 
   const hashSenha = bcrypt.encodePassword(body.senha);
+
   const insertCliente = await Usuario.create({
     nome: body.nome,
     sobrenome: body.sobrenome,
     email: body.email,
     senha: hashSenha,
-    cpf: body.cpf,
-    dataDeNascimento: body.dataDeNascimento,
-    idEndereco: insertEndereco.dataValues.idEndereco
+    cpf: body.cpf
   });
 
   return {
-    message: 'Usuario cadastrado com sucesso!',
-    idCliente: insertCliente.dataValues.idUsuario
+    message: 'Usuário cadastrado com sucesso!',
+    id: insertCliente.dataValues.idUsuario,
+    nome: insertCliente.dataValues.nome,
+    sobrenome: insertCliente.dataValues.sobrenome
   };
 };
 
 const getClienteById = async (id) => {
   const pedidos = await sequelize.query(
-    `SELECT 
+    `SELECT
         a.idPedido,
         a.idProduto,
         a.idStatus,
         c.status AS statusPedido,
+        a.data,
         a.quantidade,
         b.nome AS nomeProduto,
         b.descricao AS descricaoProduto,
-        b.preco AS precoProduto
+        b.preco AS precoProduto,
+        b.imagem AS imagemProduto
       FROM
         Pedido AS a
         INNER JOIN Produto AS b ON a.idProduto = b.idProduto
@@ -103,7 +104,7 @@ const updateClienteEndereco = async (body, id) => {
   const cliente = await Usuario.findByPk(id);
 
   if (!cliente.dataValues.idEndereco) {
-    await Endereco.create({
+    const resultEndereco = await Endereco.create({
       rua: body.rua,
       bairro: body.bairro,
       cidade: body.cidade,
@@ -111,6 +112,8 @@ const updateClienteEndereco = async (body, id) => {
       cep: body.cep,
       numero: body.numero
     });
+
+    await Usuario.update({ idEndereco: resultEndereco.dataValues.idEndereco }, { where: { idUsuario: id } });
 
     return { message: "Endereço atualizado com sucesso!" };
   }
